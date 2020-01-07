@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    
+    <body>
+            <section style="padding: 40px">
+                <h1 class="text-left" style="color:orange">Review Details</h1>
+
+                {% if doc=='' %}
+                <h3 class="text-left" style="color:lightslategray">Sorry, no matches for {{id}}</h3>
+                {% else %}
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">ID:</h5>
+                        </div>
+                        <p class="mb-1">{{doc['id']}}</p>
+                    </a>
+                    <a class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Product Name:</h5>
+                        </div>
+                        <p class="mb-1">{{doc['productName']}}</p>
+                    </a>
+                    <a class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Reviewer Name:</h5>
+                        </div>
+                        <p class="mb-1">{{doc['reviewerName']}}</p>
+                    </a>
+                    <a class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Score:</h5>
+                        </div>
+                        <p class="mb-1">{{doc['reviewScore']}}</p>
+                    </a>
+                    <a class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Summary:</h5>
+                        </div>
+                        <p class="mb-1">{{doc['reviewSummary']}}</p>
+                    </a>
+                    <a class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Body:</h5>
+                        </div>
+                        <p class="mb-1">{{doc['reviewBody']}}</p>
+                    </a>
+                {% endif %}   
+            </section>            
+        </div>            
+    </body>
+</html> 

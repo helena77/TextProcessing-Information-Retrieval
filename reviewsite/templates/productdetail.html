@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    
+    <body>
+            <section style="padding: 40px">
+                <h1 class="text-left" style="color:orange">Product Details</h1>
+
+                {% if doc=='' %}
+                <h3 class="text-left" style="color:lightslategray">Sorry, no matches for {{id}}</h3>
+                {% else %}
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">ASIN:</h5>
+                        </div>
+                        <p class="mb-1">{{doc['productID']}}</p>
+                    </a>
+                    <a class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Product Name:</h5>
+                        </div>
+                        <p class="mb-1">{{doc['productName']}}</p>
+                    </a>
+                    <a class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Product Description:</h5>
+                        </div>
+                        <p class="mb-1">{{doc['description']}}</p>
+                    </a>
+                    <a class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Price:</h5>
+                        </div>
+                        <p class="mb-1"> ${{doc['price']}}</p>
+                    </a>
+                {% endif %}   
+            </section>            
+        </div>            
+    </body>
+</html>
+
+
+

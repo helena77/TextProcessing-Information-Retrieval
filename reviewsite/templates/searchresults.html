@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<section>
+			<h1 class="text-center" style="color:orange; font-size:4em">Review Search Results</h1>
+		</section>
+		<section style="padding: 20px">
+			<div>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Score</th>
+							<th scope="col">Summary</th>
+							<th scope="col">Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for doc in results['docs'] %}
+						<tr>
+							<td><a href="{{url_for('prodLookup', id=doc['productID'])}}">{{doc['productName']}}</a></td>
+							<td>{{doc['reviewScore']}}</td>
+							<td>{{doc['reviewSummary']}}</td>
+							<td><a href="{{url_for('revLookup', id=doc['id'])}}">Details</a></td>
+						</tr>
+						{% endfor %}					
+					</tbody>
+				</table>
+			</div>
+			<p class="text-center">Showing {{start+1}} - {% if start + 10 < results['numFound']%} {{start+10}} {% else %} {{results['numFound']}} {% endif %} of {{results['numFound']}}</p>		
+		</section>
+		<section style="padding: 20px">
+			<div>
+				{% if results['numFound'] != 0 %}				
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th scope="col">Paging</th>
+							<th scope="col">Faceting</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>							
+							<td>
+								{% if start + 10 < results['numFound'] %}
+									{% if facetValue == '' %}
+									<li><a href="{{url_for('searchResults', k=k, start=start+10)}}">Next</a></li>
+									{% else %}
+									<li><a href="{{url_for('searchResults', k=k, facetValue=facetValue, start=start+10)}}">Next</a></li>
+									{% endif %}
+								{% else %}
+								<li>Next</li>
+								{% endif %}
+								{% if start - 10 >= 0 %}
+									{% if facetValue == '' %}
+									<li><a href="{{url_for('searchResults', k=k, start=start-10)}}">Previous</a></li>
+									{% else %}
+									<li><a href="{{url_for('searchResults', k=k, facetValue=facetValue, start=start-10)}}">Previous</a></li>
+									{% endif %}
+								{% else %}
+								<li>Previous</li>
+								{% endif %}	
+							</td>
+							<td>
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+										<th scope="col">Score</th>
+										<th scope="col">Count</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for score in scores %}
+										<tr>
+											<td>{{score[0]}}</td>
+											<td>{{score[1]}}</td>																			
+											<td><a href="{{url_for('searchResults', k=k, facetValue=score[0], start=start)}}">View</a></td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+				{% else %}
+				<h3 style="color:darkslategray">Found nothing? Maybe the words you want are as below!</h3>
+				<h5 style="color:darkslategray">hover them, click them, find your result!</h5>
+				{% for word in spell %}
+				<li><a href="{{url_for('searchResults', k=word, start=start)}}" style="font-size:20px; color: lightslategrey">{{word}}</a></li>
+				{% endfor %}
+				{% endif %}		   
+			</div>
+		</section>
+		<section style="padding: 20px">
+			<div>
+				<h4 class="text-left" style="color:lightslategray">Start your new research here: </h4>
+				<a href="{{url_for('searchForm')}}" style="font-size:20px; color:darkblue">New Search</a>
+			</div>
+		</section>
+	</body>
+</html>
+

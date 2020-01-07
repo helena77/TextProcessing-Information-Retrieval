@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<section>
+			<h1 class="text-center" style="color:orange; font-size:4em">Review Search</h1>
+			<h2 class="text-center" style="color:peru">{{pC['numFound']}} products, {{rC['numFound']}} reviews, 1 search type, and growing!</h2>
+		</section>
+
+		<section style="padding: 20px">
+			<div class="row no-gutters bg-light position-relative">
+				<div class="col-md-6 mb-md-0 p-md-4">
+					<img src="{{url_for('static', filename='search.jpg')}}" class="w-100" alt="..." height="400px" width="80px">
+				</div>
+				<div class="col-md-6 position-static p-4 pl-md-0">
+					<h5 class="mt-0" style="font-size:40px; color:lightslategray">Let's Search!</h5>
+					<p style="font-size:20px; color:lightslategray">Click the link as below and get started to do the review search!</p>
+					<a href="/search" class="stretched-link" style="font-size:20px; color:darkblue">Review Search</a>
+				</div>
+			</div>
+		</section>
+	</body>
+</html> 
